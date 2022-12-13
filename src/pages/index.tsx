@@ -1,22 +1,21 @@
 import { type NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 
-import TrendingCarousel from "@components/TrendingCarousel";
+import { trpc } from "@utils/trpc";
+
+import RouteButton from "@components/RouteButton";
+import { FaTv, FaFilm } from 'react-icons/fa'
 
 const Home: NextPage = () => {
-  return (
-    <>
-      <Head>
-        <title>Movies</title>
-        <meta name="description" content="" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
 
-      <main className="flex min-h-screen flex-col">
-        <TrendingCarousel />
-      </main>
-    </>
-  );
+  const { data, isLoading } = trpc.tmdb.getTrending.useQuery({})
+
+  return (<>
+      <div className="">
+      asdasd
+      </div>
+  </>);
 };
 
 export default Home;
