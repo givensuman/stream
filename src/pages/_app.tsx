@@ -16,7 +16,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <main className="flex flex-col items-center min-h-screen bg-slate-700 text-slate-200 min-w-screen">   
+    <main className="flex flex-col items-center min-h-screen bg-slate-700 text-slate-200 min-w-screen overflow-hidden">   
       <Navbar />
       <div className="max-w-4xl mt-12">
         <Component {...pageProps} />

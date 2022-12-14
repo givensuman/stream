@@ -1,9 +1,9 @@
-import React from 'react'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
-import { clsx } from 'clsx'
+import React from "react"
+import { useRouter } from "next/router"
+import Link from "next/link"
+import { clsx } from "clsx"
 
-import { FaHome, FaTv, FaFilm } from 'react-icons/fa'
+import { FaHome, FaTv, FaFilm } from "react-icons/fa"
 
 const Navbar: React.FC = () => {
 
@@ -54,11 +54,12 @@ const Button: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement> & {
     return (
         <button
             {...props}
-            className={clsx("rounded-md py-2 px-4 text-lg flex flex-row items-center transition-all", {
+            className={clsx("rounded-md py-2 px-4 text-lg flex flex-row items-center transition-all font-bold outline-none border-none focus:ring-4 focus:ring-sky-400", {
                 "text-sky-400 cursor-default": active,
                 "hover:bg-slate-600": !active
             })}
             disabled={active}
+            draggable={false}
         >
             <span className="mr-1.5">{icon}</span>
             {children}

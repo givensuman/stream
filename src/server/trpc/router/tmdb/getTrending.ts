@@ -1,3 +1,5 @@
+// https://developers.themoviedb.org/3/trending/get-trending
+
 import { publicProcedure } from "../../trpc";
 import { z } from "zod"
 import tmdbRoute from "@utils/tmdbRoute"
@@ -19,13 +21,20 @@ const dataShape = z.object({
             first_air_date: z.string(),
             original_name: z.string(),
             origin_country: z.array(z.string()),
-            }),
+            title: z.never(),
+            release_date: z.never(),
+            original_title: z.never()
+        }),
         // media_type = "movie"
         z.object({
             media_type: z.literal('movie'),
             title: z.string(),
             release_date: z.string(),
             original_title: z.string(),
+            name: z.never(),
+            first_air_date: z.never(),
+            original_name: z.never(),
+            origin_country: z.never()
         }),
         // media_type = "all" || "person"
         z.object({
@@ -50,12 +59,16 @@ const dataShape = z.object({
     total_results: z.number(),
 })
 
+/** 
+    Gets trending items from the database.
+*/
+
 export const getTrending = publicProcedure
     .input(z.object({
         media_type: z.enum(mediaType).default("all"),
         time_window: z.enum(["day", "week"]).default("day")
     }))
-    .output(dataShape)
+    // .output(dataShape)
     .query(async ({ input }) => {
         return await fetch(tmdbRoute(`/trending/${input.media_type}/${input.time_window}`), {
             method: "GET"
