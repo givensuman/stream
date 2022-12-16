@@ -27,14 +27,12 @@ const Search: React.FC = () => {
     if (isLoading) return <h1>Loading...</h1>
 
     return (
-        <div className="flex flex-row flex-wrap space-x-4 space-y-4 justify-center items-center">
-            {data?.results.map((item, index) => {
+        <div className="">
+            {data?.results.map((item) => {
                 return (
-                    <Card 
-                        key={item.id}
-                        src={tmdbImage(item.poster_path)}
-                        alt={item.title || item.name}
-                    />
+                    <h1 key={item.id}>
+                        {item.name || item.title}
+                    </h1>
                 )
             })}
         </div>

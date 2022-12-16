@@ -13,9 +13,6 @@ const Home: NextPage = () => {
 
   return (<>
       <div className="flex flex-col">
-        <Search
-          placeholder="Search streaming collection"
-        />
         {data?.results.map((item, index) => {
           return (
               <h1 key={item.id}>

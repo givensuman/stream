@@ -4,6 +4,8 @@ import { NextPage } from "next"
 
 import { trpc } from "@utils/trpc"
 import Search from "@components/Search"
+import useLog from "@hooks/useLog"
+import useInterval from "@hooks/useInterval"
 
 const Media: NextPage = () => {
     
@@ -11,20 +13,33 @@ const Media: NextPage = () => {
 
     const { media } = router.query
 
-    const { data, isLoading } = trpc.tmdb.getTv.useQuery({
+    const { data, isLoading, fetchNextPage } = trpc.tmdb.media.useInfiniteQuery({
+        mediaType: "tv",
         endpoint: "popular"
+    }, {
+        getNextPageParam: (lastPage, allPages) => lastPage.nextPage
     })
-    
+
     return (
         <div>
-            <Search />
-            {`You're looking at`} {media}
+            <Search 
+                placeholder="Search for stuff"
+                mediaType={media as "tv" | "movies"}
+            />
+            {data?.pages.flatMap(page => {
+                return [...page.data.results.map(item => {
+                    return (
+                        <h1 key={item.id}>{item.name}</h1>
+                    )
+                })]
+            })}
         </div>
     )
 }
 
-Media.getInitialProps = async (context) => {
-    if (context.query.media != ("tv" || "movies")) throw new Error("Invalid route for media component")
+Media.getInitialProps = async ({ query: { media } } ) => {
+    if (!["movies", "tv"].includes(media as string)) 
+        throw new Error(`Invalid route for media component. You passed "${media}" but I only accept "tv" or "movies"`)
 
     return {}
 }
