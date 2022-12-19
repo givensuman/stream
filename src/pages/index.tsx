@@ -6,7 +6,10 @@ import useLog from "@hooks/useLog";
 
 const Home: NextPage = () => {
 
-  const { data, isLoading } = trpc.torrent.test.useQuery({})
+  const { data, isLoading } = trpc.torrent.search.useQuery({
+    query: "Bullet Train",
+    category: "movies"
+  })
 
   useLog(data)
   
