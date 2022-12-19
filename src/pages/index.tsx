@@ -1,25 +1,20 @@
-import React, { useState } from "react"
+import React from "react"
 import { type NextPage } from "next";
-import clsx from "clsx";
 
 import { trpc } from "@utils/trpc";
-import tmdbImage from "@utils/tmdbImage";
-
-import Search from "@components/Search";
+import useLog from "@hooks/useLog";
 
 const Home: NextPage = () => {
 
-  const { data, isLoading } = trpc.tmdb.getTrending.useQuery({})
+  const { data, isLoading } = trpc.torrent.test.useQuery({})
+
+  useLog(data)
+  
+  if (isLoading) return <h1>Loading...</h1>
 
   return (<>
       <div className="flex flex-col">
-        {data?.results.map((item, index) => {
-          return (
-              <h1 key={item.id}>
-                {item.name||item.title}
-              </h1>
-          )
-        })}
+        {`Welcome (:`}
       </div>
   </>);
 };

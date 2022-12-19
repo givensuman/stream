@@ -1,11 +1,11 @@
 import { router } from "../../trpc";
 
-import { getTrending } from "./getTrending";
+import { getTrending } from "../../../../../trash/getTrending";
 import { search } from "./search";
-import { media } from "./media";
+import { tv } from "./tv"
 
 export const tmdbRouter = router({
     getTrending: getTrending,
     search: search,
-    media: media
+    tv: tv
 })

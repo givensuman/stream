@@ -22,6 +22,7 @@
     "react-icons": "^4.7.1",
     "react-swipeable": "^7.0.0",
     "superjson": "1.9.1",
+    "torrent-search-api": "^2.1.4",
     "yallist": "^4.0.0",
     "zod": "^3.18.0"
   },
@@ -29,6 +30,7 @@
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
+    "@types/torrent-search-api": "^2.0.0",
     "@types/yallist": "^4.0.1",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
     "@typescript-eslint/parser": "^5.33.0",

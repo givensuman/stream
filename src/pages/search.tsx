@@ -2,13 +2,7 @@ import React, { useState } from "react"
 import { useRouter } from "next/router"
 
 import { trpc } from "@utils/trpc"
-import tmdbRoute from "@utils/tmdbRoute"
-import tmdbImage from "@utils/tmdbImage"
 
-import { z } from "zod"
-
-import useLog from "@hooks/useLog"
-import Image, { ImageProps } from "next/image"
 import clsx from "clsx"
 
 const Search: React.FC = () => {

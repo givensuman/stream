@@ -1,6 +1,6 @@
 // https://developers.themoviedb.org/3/trending/get-trending
 
-import { publicProcedure } from "../../trpc";
+import { publicProcedure } from "../src/server/trpc/trpc";
 import { z } from "zod"
 import tmdbRoute from "@utils/tmdbRoute"
 
