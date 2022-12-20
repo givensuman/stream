@@ -9,21 +9,26 @@ import tmdbRoute from "@utils/tmdbRoute"
     * Accepts a specific endpoint or a dynamic id.
 */
 
-export const tv = publicProcedure
+export const movies = publicProcedure
     .input(z.object({
-            endpoint: z.enum(["now_playing", "popular", "top_rated"]).or(z.string()).default("popular"),
-            cursor: z.number().default(1)
+            endpoint: z.union([
+                z.literal("now_playing"),
+                z.literal("popular"),
+                z.literal("top_rated"),
+                z.string()
+            ]).default("popular"),
+            cursor: z.number().default(1).optional()
         }))
     .query(async ({ input }) => {
 
         const cursor = input.cursor ?? 1
-        const nextPage = cursor + 1
 
         const data = await fetch(tmdbRoute(`/movie/${input.endpoint}`, {
             page: cursor
         }))
             .then(res => res.json())
 
+        const nextPage = cursor < data.total_pages ? cursor + 1 : false
         return {
             data,
             nextPage

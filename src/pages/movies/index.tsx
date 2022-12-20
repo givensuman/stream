@@ -7,7 +7,7 @@ import Search from "@components/Search"
 const Movies: NextPage = () => {
     const [ currentEndpoint, setCurrentEndpoint ] = useState("popular")
 
-    const { data, isLoading, fetchNextPage } = trpc.tmdb.tv.useInfiniteQuery({
+    const { data, isLoading, fetchNextPage } = trpc.tmdb.movies.useInfiniteQuery({
         endpoint: "popular"
     }, {
         getNextPageParam: (lastPage: any, allPages: any) => lastPage.nextPage

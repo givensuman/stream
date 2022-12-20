@@ -9,8 +9,8 @@ const TvId: NextPage = () => {
     const router = useRouter()
     const { id } = router.query
 
-    const { data, isLoading } = trpc.tmdb.tv.useQuery({
-        endpoint: id
+    const { data, isLoading } = trpc.tmdb.tvid.useQuery({
+        id: id as string
     }, {
         enabled: !!id
     })
@@ -21,8 +21,8 @@ const TvId: NextPage = () => {
 
     return (
         <div>
-            <h1>{data?.data.name}</h1>
-            <p>{data?.data.overview}</p>
+            <h1>{data.name}</h1>
+            <p>{data.overview}</p>
         </div>
     )
 }

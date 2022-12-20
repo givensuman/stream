@@ -11,13 +11,15 @@ const Tv: NextPage = () => {
     const { data, isLoading, fetchNextPage } = trpc.tmdb.tv.useInfiniteQuery({
         endpoint: "popular"
     }, {
-        getNextPageParam: (lastPage: any, allPages: any) => lastPage.nextPage
+        getNextPageParam: (lastPage) => lastPage.nextPage
     })
 
     console.log(data?.pages)
 
+    if (isLoading) return <h1>Loading...</h1>
+    
     return (
-        <div>
+        <div className="flex flex-col">
             <Search 
                 placeholder="Search for stuff"
                 mediaType="tv"
